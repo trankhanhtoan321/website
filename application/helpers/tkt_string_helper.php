@@ -27,7 +27,7 @@ function array_sort($array, $on, $order=SORT_ASC)
         }
 
         foreach ($sortable_array as $k => $v) {
-            $new_array[$k] = $array[$k];
+            $new_array[] = $array[$k];
         }
     }
 

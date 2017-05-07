@@ -65,3 +65,4 @@ $route['translate_uri_dashes'] = FALSE;
 /*----------------------------------------------------------------------*/
 $route['default_controller'] = 'giarehon';
 $route['search.html'] = 'giarehon/search';
+$route['lich-su-gia.html'] = 'giarehon/lichsugia';

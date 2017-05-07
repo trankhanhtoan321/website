@@ -19,7 +19,7 @@ class HttpClient {
     var $content_type = 'application/x-www-form-urlencoded; charset=UTF-8';
     var $user_agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0';
     // Options
-    var $timeout = 30;
+    var $timeout = 20;
     var $use_gzip = true;
     var $persist_cookies = true;// If true, received cookies are placed in the $this->cookies array ready for the next request
                                 // Note: This currently ignores the cookie path (and time) completely. Time is not important, 
@@ -27,7 +27,7 @@ class HttpClient {
     var $persist_referers = true; // For each request, sends path of last request as referer
     var $debug = false;
     var $handle_redirects = true; // Auaomtically redirect if Location or URI header is found
-    var $max_redirects = 15;
+    var $max_redirects = 5;
     var $headers_only = false;    // If true, stops receiving once headers have been read.
     // Basic authorization variables
     var $username;
@@ -49,11 +49,11 @@ class HttpClient {
     function setAccept($s){
         $this->accept = $s;
     }
-    function __construct($host, $port=80){
+    function __construct($host, $port=80) {
         $this->host = $host;
         $this->port = $port;
     }
-    function get($path, $data = false){
+    function get($path, $data = false) {
         $this->path = $path;
         $this->method = 'GET';
         if ($data) {
@@ -61,36 +61,36 @@ class HttpClient {
         }
         return $this->doRequest();
     }
-    function post($path, $data){
+    function post($path, $data) {
         $this->path = $path;
         $this->method = 'POST';
         $this->postdata = $this->buildQueryString($data);
     	return $this->doRequest();
     }
-    function buildQueryString($data){
+    function buildQueryString($data) {
         $querystring = '';
-        if (is_array($data)){
+        if (is_array($data)) {
             // Change data in to postable data
-    		foreach($data as $key => $val){
-    			if(is_array($val)){
-    				foreach($val as $val2){
+    		foreach ($data as $key => $val) {
+    			if (is_array($val)) {
+    				foreach ($val as $val2) {
     					$querystring .= urlencode($key).'='.urlencode($val2).'&';
     				}
-    			}else{
+    			} else {
     				$querystring .= urlencode($key).'='.urlencode($val).'&';
     			}
     		}
     		$querystring = substr($querystring, 0, -1); // Eliminate unnecessary &
-    	}else{
+    	} else {
     	    $querystring = $data;
     	}
     	return $querystring;
     }
-    function doRequest(){
+    function doRequest() {
         // Performs the actual HTTP request, returning true or false depending on outcome
-		if (!$fp = @fsockopen($this->host, $this->port, $errno, $errstr, $this->timeout)){
+		if (!$fp = @fsockopen($this->host, $this->port, $errno, $errstr, $this->timeout)) {
 		    // Set error message
-            switch($errno){
+            switch($errno) {
 				case -3:
 					$this->errormsg = 'Socket creation failed (-3)';
 				case -4:
@@ -98,7 +98,7 @@ class HttpClient {
 				case -5:
 					$this->errormsg = 'Connection refused or timed out (-5)';
 				default:
-                    $this->errormsg = 'Connection failed ('.$errno.')';
+					$this->errormsg = 'Connection failed ('.$errno.')';
 			    $this->errormsg .= ' '.$errstr;
 			    $this->debug($this->errormsg);
 			}

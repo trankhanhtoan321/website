@@ -16,7 +16,17 @@
 						<label><input class="flat" id="adayroi" type="checkbox" checked value="1" name="adayroi" > Adayroi</label>
 					</div>
 					<div class="checkbox">
+						<label><input class="flat" id="nguyenkim" type="checkbox" checked value="1" name="nguyenkim" > NguyenKim</label>
+					</div>
+					<div class="checkbox">
 						<label><input class="flat" id="tiki" type="checkbox" checked value="1" name="tiki" > Tiki</label>
+					</div><br/>
+					<b>Loại Tìm Kiếm</b>
+					<div class="checkbox">
+						<label><input type="radio" class="flat" id="search_exactly" name="search_exactly" value="0" checked /> Thông thường</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="radio" class="flat" id="search_exactly" name="search_exactly" value="1" /> Chính Xác</label>
 					</div>
 					<center><input type="submit" class="form-control btn btn-success" value="Tìm giá rẻ nhất" /></center>
 					<br/>

@@ -54,8 +54,8 @@ body{
 	padding:5px;
 	color:#ACACAC;
 }
-::selection { background-color: #E13300; color: white; }
-::-moz-selection { background-color: #E13300; color: white; }
+::selection { background-color: #00816A; color: white; }
+::-moz-selection { background-color: #00816A; color: white; }
 .col-item{
 	border: solid 1px #E1E1E1;
 	background-color: #FFFFFF;
